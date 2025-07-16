@@ -437,7 +437,7 @@ const Shinsegae: React.FC<ShinsegaeProps> = ({ onNavigateToHome }) => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6" style={{ lineHeight: '1.8' }}>
-            파인호스트와 함께하는 수많은 숙소가 <br /> 지금 이 순간에도 신세계와 함께하고 있습니다.
+            파인호스트와 함께하는 수많은 숙소가 <br /> 신세계와 함께하고 있습니다.
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               프리미엄 숙소들의 실제 입점 사례를 확인해보세요

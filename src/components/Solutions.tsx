@@ -74,16 +74,16 @@ const Solutions: React.FC = () => {
   ];
 
   return (
-    <section id="solutions" className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-24">
+    <section id="solutions" className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-8 md:py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8 md:mb-12 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight"
+            className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4 md:mb-6 tracking-tight leading-tight"
           >
             운영이 편해지니, 숙소가 더 잘 돌아갑니다
           </motion.h2>
@@ -92,7 +92,7 @@ const Solutions: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
             복잡한 기술 없이도, 실제로 필요한 결과만을 제공합니다.<br />
             이제 불안 없이 숙소를 운영하세요.
@@ -100,7 +100,7 @@ const Solutions: React.FC = () => {
         </div>
 
         {/* Solutions Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 lg:mb-20">
           {solutions.map((solution, index) => (
             <motion.div
               key={index}
@@ -110,40 +110,40 @@ const Solutions: React.FC = () => {
               viewport={{ once: true }}
               className="group"
             >
-              <div className={`bg-gradient-to-br ${solution.color} rounded-3xl p-8 h-full border ${solution.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
+              <div className={`bg-gradient-to-br ${solution.color} rounded-2xl md:rounded-3xl p-6 md:p-8 h-full border ${solution.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
                 {/* Icon */}
-                <div className="flex items-center mb-6">
-                  <div className={`w-16 h-16 ${solution.iconBg} rounded-2xl flex items-center justify-center mr-4`}>
-                    <solution.icon className={`w-8 h-8 ${solution.iconColor}`} />
+                <div className="flex items-center mb-4 md:mb-6">
+                  <div className={`w-12 h-12 md:w-16 md:h-16 ${solution.iconBg} rounded-xl md:rounded-2xl flex items-center justify-center mr-3 md:mr-4`}>
+                    <solution.icon className={`w-6 h-6 md:w-8 md:h-8 ${solution.iconColor}`} />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                     {solution.title}
                   </h3>
                 </div>
 
                 {/* Features */}
-                <div className="space-y-4 mb-8">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3">주요 기능</h4>
+                <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
+                  <h4 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3">주요 기능</h4>
                   {solution.features.map((feature, featureIndex) => (
                     <button
                       key={featureIndex}
                       onClick={() => scrollToSection(feature.anchor)}
                       className="w-full text-left group/feature"
                     >
-                      <div className="flex items-start p-3 rounded-xl hover:bg-white/50 transition-all duration-200 group-hover/feature:shadow-sm">
-                        <Check className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                        <span className="text-gray-700 leading-relaxed underline decoration-dotted underline-offset-4 group-hover/feature:text-gray-900 group-hover/feature:decoration-solid transition-all duration-200">
+                      <div className="flex items-start p-2 md:p-3 rounded-lg md:rounded-xl hover:bg-white/50 transition-all duration-200 group-hover/feature:shadow-sm">
+                        <Check className="w-4 h-4 md:w-5 md:h-5 text-green-600 mt-0.5 mr-2 md:mr-3 flex-shrink-0" />
+                        <span className="text-sm md:text-base text-gray-700 leading-relaxed underline decoration-dotted underline-offset-4 group-hover/feature:text-gray-900 group-hover/feature:decoration-solid transition-all duration-200">
                           {feature.text}
                         </span>
-                        <ArrowRight className="w-4 h-4 text-gray-400 ml-auto mt-1 group-hover/feature:text-gray-600 transition-colors duration-200" />
+                        <ArrowRight className="w-3 h-3 md:w-4 md:h-4 text-gray-400 ml-auto mt-1 group-hover/feature:text-gray-600 transition-colors duration-200 flex-shrink-0" />
                       </div>
                     </button>
                   ))}
                 </div>
 
                 {/* User Quote */}
-                <div className="bg-white/60 rounded-2xl p-6 border border-white/80">
-                  <p className="text-gray-600 text-sm italic leading-relaxed">
+                <div className="bg-white/60 rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/80">
+                  <p className="text-gray-600 text-xs md:text-sm italic leading-relaxed">
                     "{solution.userQuote}"
                   </p>
                 </div>
@@ -160,17 +160,17 @@ const Solutions: React.FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-white rounded-3xl p-12 shadow-lg border border-gray-200 max-w-4xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+          <div className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-lg border border-gray-200 max-w-4xl mx-auto">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 mb-3 md:mb-4 leading-tight">
               우리 숙소에도 적용해보기
             </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
               지금 바로 무료 상담을 받아보시고,<br />
               파인호스트가 어떻게 도움을 드릴 수 있는지 확인해보세요.
             </p>
             <button
               onClick={scrollToContact}
-              className="px-8 py-4 bg-primary-600 text-white font-medium rounded-xl hover:bg-primary-700 transition-colors duration-200 shadow-lg hover:shadow-xl text-lg"
+              className="px-6 md:px-8 py-3 md:py-4 bg-primary-600 text-white font-medium rounded-lg md:rounded-xl hover:bg-primary-700 transition-colors duration-200 shadow-lg hover:shadow-xl text-sm md:text-lg"
             >
               무료 상담 신청하기
             </button>

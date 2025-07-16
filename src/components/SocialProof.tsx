@@ -15,7 +15,7 @@ const SocialProof: React.FC = () => {
     },
     {
       name: "제주독거",
-      description: "숙소 위탁운영사 ‘트러스테이’ 운영",
+      description: "숙소 위탁운영사 '트러스테이' 운영",
       logo: "/jejudoccc.jpg",
       website: "https://www.instagram.com/jejudoccc/"
     },
@@ -119,8 +119,6 @@ const SocialProof: React.FC = () => {
     };
   }, [testimonials.length]);
 
-
-
   // Manual navigation
   const nextReview = () => {
     setCurrentReviewIndex((prev) => (prev + 3) % testimonials.length);
@@ -137,37 +135,37 @@ const SocialProof: React.FC = () => {
   const visibleReviews = testimonials.slice(currentReviewIndex, currentReviewIndex + 3);
 
   return (
-    <section className="w-full bg-white py-24">
+    <section className="w-full bg-white py-8 md:py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8 md:mb-12 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight leading-relaxed"
+            className="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-900 mb-4 md:mb-6 tracking-tight leading-tight"
           >
-            <div className="mb-4">국내 최고의 숙소와 위탁사들이</div>
+            <div className="mb-2 md:mb-4">국내 최고의 숙소와 위탁사들이</div>
             <div><span className="text-primary-600">FineHost</span>로 운영 효율과 성장을 동시에 잡고 있습니다</div>
           </motion.h2>
         </div>
 
         {/* Partners Section */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-8 md:mb-12 lg:mb-20"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">이미 수많은 전문 운영사들이 선택한 FineHost</h3>
-            <p className="text-gray-600 text-lg">믿고 맡기는 파트너들이 증명합니다</p>
+            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-3 md:mb-4 leading-tight">이미 수많은 전문 운영사들이 선택한 FineHost</h3>
+            <p className="text-gray-600 text-sm md:text-base lg:text-lg">믿고 맡기는 파트너들이 증명합니다</p>
           </motion.div>
 
           {/* Main Partners - New Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12 md:mb-16 lg:mb-20">
             {partners.map((partner, index) => (
               <motion.div
                 key={partner.name}
@@ -175,12 +173,12 @@ const SocialProof: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-primary-200 shadow-md"
+                className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-primary-200 shadow-md"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 md:gap-4">
                   {/* Logo Section - Left */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 flex items-center justify-center group">
+                    <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center group">
                       <img 
                         src={partner.logo} 
                         alt={`${partner.name} 로고`}
@@ -191,16 +189,16 @@ const SocialProof: React.FC = () => {
                           target.nextElementSibling?.classList.remove('hidden');
                         }}
                       />
-                      <div className="w-16 h-16 flex items-center justify-center hidden">
-                        <span className="text-gray-500 text-sm font-medium">{partner.name}</span>
+                      <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center hidden">
+                        <span className="text-gray-500 text-xs md:text-sm font-medium">{partner.name}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Content Section - Center */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1 truncate">{partner.name}</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{partner.description}</p>
+                    <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1 truncate">{partner.name}</h4>
+                    <p className="text-gray-600 text-xs md:text-sm leading-relaxed line-clamp-2">{partner.description}</p>
                   </div>
 
                   {/* Website Button - Right */}
@@ -209,7 +207,7 @@ const SocialProof: React.FC = () => {
                       href={partner.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors duration-200 whitespace-nowrap hover:underline"
+                      className="text-primary-600 hover:text-primary-700 text-xs md:text-sm font-medium transition-colors duration-200 whitespace-nowrap hover:underline"
                     >
                       홈페이지 보기
                     </a>
@@ -227,7 +225,7 @@ const SocialProof: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <h4 className="text-xl font-semibold text-gray-900 mb-10 text-center">국내에서 제일 가는 숙소의 사장님들은 이미 파인호스트를 사용 중이에요.</h4>
+            <h4 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-6 md:mb-8 lg:mb-10 text-center leading-tight">국내에서 제일 가는 숙소의 사장님들은 이미 파인호스트를 사용 중이에요.</h4>
             
             <div className="overflow-hidden">
               <motion.div
@@ -238,7 +236,7 @@ const SocialProof: React.FC = () => {
                   ease: "linear",
                   repeatType: "loop"
                 }}
-                className="flex gap-16"
+                className="flex gap-8 md:gap-12 lg:gap-16"
                 style={{ width: `${partnerBrands.length * 100}%` }}
               >
                 {[...partnerBrands, ...partnerBrands].map((brand, index) => (
@@ -249,7 +247,7 @@ const SocialProof: React.FC = () => {
                     <img 
                       src={brand.logo} 
                       alt={`${brand.name} 로고`}
-                      className="w-32 h-24 object-contain drop-shadow-md opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="w-20 h-16 md:w-24 md:h-18 lg:w-32 lg:h-24 object-contain drop-shadow-md opacity-80 hover:opacity-100 transition-opacity duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
@@ -269,10 +267,10 @@ const SocialProof: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">실제 고객사 후기</h3>
-            <p className="text-secondary-600">파인호스트를 사용하는 숙박업주님들의 생생한 후기입니다</p>
+            <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-900 mb-3 md:mb-4 leading-tight">실제 고객사 후기</h3>
+            <p className="text-secondary-600 text-sm md:text-base">파인호스트를 사용하는 숙박업주님들의 생생한 후기입니다</p>
           </motion.div>
 
           {/* Reviews Slider */}
@@ -292,36 +290,36 @@ const SocialProof: React.FC = () => {
                   ease: "linear",
                   repeatType: "loop"
                 }}
-                className="flex gap-6"
+                className="flex gap-4 md:gap-6"
                 style={{ width: `${Math.ceil(testimonials.length / 3) * 100}%` }}
               >
                 {testimonials.map((review, index) => (
                   <motion.div
                     key={index}
-                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
+                    className="flex-shrink-0 w-64 md:w-72 lg:w-80 bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
                   >
                     {/* Quote Icon */}
-                    <div className="text-gray-200 mb-4">
-                      <Quote size={20} />
+                    <div className="text-gray-200 mb-3 md:mb-4">
+                      <Quote size={16} className="md:w-5 md:h-5" />
                     </div>
 
                     {/* Rating */}
-                    <div className="flex items-center mb-4">
+                    <div className="flex items-center mb-3 md:mb-4">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star key={i} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 fill-current" />
                       ))}
                     </div>
 
                     {/* Content */}
-                    <p className="text-gray-700 mb-4 leading-relaxed text-sm">
+                    <p className="text-gray-700 mb-3 md:mb-4 leading-relaxed text-xs md:text-sm">
                       "{review.content}"
                     </p>
 
                     {/* Author */}
                     <div className="flex items-center">
-                      <div className="text-xl mr-3">{review.avatar}</div>
+                      <div className="text-lg md:text-xl mr-2 md:mr-3">{review.avatar}</div>
                       <div>
-                        <div className="font-semibold text-gray-900 text-sm">{review.name}</div>
+                        <div className="font-semibold text-gray-900 text-xs md:text-sm">{review.name}</div>
                         <div className="text-xs text-secondary-600">{review.role} / {review.location}</div>
                       </div>
                     </div>

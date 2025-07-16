@@ -18,13 +18,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14 md:h-16">
           {/* Logo */}
           <div className="flex items-center">
             <img
               src="/finehost_bk.png"
               alt="FineHost 로고"
-              className="h-8 w-auto"
+              className="h-6 md:h-8 w-auto"
               style={{ display: 'inline-block', verticalAlign: 'middle' }}
             />
           </div>
@@ -39,33 +39,33 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
                 <img 
                   src="/shinsegae.png" 
                   alt="VIA SHINSEGAE 로고" 
-                  className="h-10 w-auto"
+                  className="h-8 md:h-10 w-auto"
                 />
               </button>
-              <a href="#problems" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
+              <a href="#problems" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center text-sm md:text-base">
                 문제점
               </a>
-              <a href="#solutions" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
+              <a href="#solutions" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center text-sm md:text-base">
                 솔루션
               </a>
-              <a href="#dashboard" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
+              <a href="#dashboard" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center text-sm md:text-base">
                 제품
               </a>
               <a 
                 href="https://vacatio.career.greetinghr.com/ko/about"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center"
+                className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center text-sm md:text-base"
               >
                 회사 소개
               </a>
-              <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
+              <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center text-sm md:text-base">
                 문의
               </a>
             </nav>
             <button 
               onClick={scrollToContact}
-              className="btn-primary ml-2"
+              className="btn-primary ml-2 text-sm px-4 py-2"
             >
               무료 상담 신청
             </button>
@@ -75,9 +75,9 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-primary-600"
+              className="text-gray-600 hover:text-primary-600 p-2"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -91,32 +91,32 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
                   onNavigateToShinsegae();
                   setIsMenuOpen(false);
                 }}
-                className="flex items-center px-3 py-2 text-gray-600 hover:text-primary-600 w-full text-left"
+                className="flex items-center px-3 py-3 text-gray-600 hover:text-primary-600 w-full text-left"
               >
                 <img 
                   src="/shinsegae.png" 
                   alt="VIA SHINSEGAE 로고" 
-                  className="h-8 w-auto mr-3"
+                  className="h-6 w-auto mr-3"
                 />
-                <span className="font-medium">VIA SHINSEGAE</span>
+                <span className="font-medium text-sm">VIA SHINSEGAE</span>
               </button>
               <a
                 href="#problems"
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                className="block px-3 py-3 text-gray-600 hover:text-primary-600 text-sm font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 문제점
               </a>
               <a
                 href="#solutions"
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                className="block px-3 py-3 text-gray-600 hover:text-primary-600 text-sm font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 솔루션
               </a>
               <a
                 href="#dashboard"
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                className="block px-3 py-3 text-gray-600 hover:text-primary-600 text-sm font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 제품
@@ -126,13 +126,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                className="block px-3 py-3 text-gray-600 hover:text-primary-600 text-sm font-medium"
               >
                 회사 소개
               </a>
               <a
                 href="#contact"
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
+                className="block px-3 py-3 text-gray-600 hover:text-primary-600 text-sm font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 문의
@@ -143,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
                     scrollToContact();
                     setIsMenuOpen(false);
                   }}
-                  className="btn-primary w-full"
+                  className="btn-primary w-full text-sm py-2"
                 >
                   무료 상담 신청
                 </button>

@@ -105,26 +105,26 @@ const ConsultationForm: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-8 md:py-16 lg:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="bg-green-50 rounded-2xl p-12"
+            className="bg-green-50 rounded-xl md:rounded-2xl p-8 md:p-12"
           >
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-600" />
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+              <CheckCircle className="w-8 h-8 md:w-10 md:h-10 text-green-600" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
               상담 신청이 완료되었습니다!
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
               빠른 시일 내에 전문 상담사가 연락드리겠습니다.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="btn-primary"
+              className="btn-primary text-sm md:text-base px-4 md:px-6 py-2 md:py-3"
             >
               다시 작성하기
             </button>
@@ -135,9 +135,9 @@ const ConsultationForm: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-8 md:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Side - Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -145,15 +145,15 @@ const ConsultationForm: React.FC = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <div className="bg-white rounded-xl md:rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                 무료 상담 신청
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">
                 전문 상담사가 1:1로 맞춤형 솔루션을 제안해드립니다
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                 {/* Name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -162,7 +162,7 @@ const ConsultationForm: React.FC = () => {
                   <input
                     type="text"
                     {...register('name', { required: '이름을 입력해주세요' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
                     placeholder="홍길동"
                   />
                   {errors.name && (
@@ -184,8 +184,8 @@ const ConsultationForm: React.FC = () => {
                         message: '올바른 연락처를 입력해주세요'
                       }
                     })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                                          placeholder="010-9531-8312"
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
+                    placeholder="010-9531-8312"
                   />
                   {errors.phone && (
                     <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
@@ -199,7 +199,7 @@ const ConsultationForm: React.FC = () => {
                   </label>
                   <select
                     {...register('propertyType', { required: '숙소 유형을 선택해주세요' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
                   >
                     <option value="">숙소 유형을 선택하세요</option>
                     {propertyTypes.map((type) => (
@@ -220,7 +220,7 @@ const ConsultationForm: React.FC = () => {
                   </label>
                   <select
                     {...register('roomCount', { required: '객실 수를 선택해주세요' })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
                   >
                     <option value="">객실 수를 선택하세요</option>
                     {roomCounts.map((count) => (
@@ -242,7 +242,7 @@ const ConsultationForm: React.FC = () => {
                   <textarea
                     {...register('message')}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
                     placeholder="현재 겪고 계신 문제나 궁금한 점을 자유롭게 작성해주세요"
                   />
                 </div>
@@ -251,7 +251,7 @@ const ConsultationForm: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 text-lg rounded-lg font-semibold transition-all duration-300 ${
+                  className={`w-full py-3 md:py-4 text-base md:text-lg rounded-lg font-semibold transition-all duration-300 ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed text-gray-600' 
                       : 'btn-primary hover:bg-primary-700'
@@ -259,7 +259,7 @@ const ConsultationForm: React.FC = () => {
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center space-x-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                       <span>전송 중...</span>
                     </div>
                   ) : (
@@ -280,51 +280,49 @@ const ConsultationForm: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
                 왜 FineHost를 선택해야 할까요?
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary-600 text-sm font-bold">1</span>
+                  <div className="w-5 h-5 md:w-6 md:h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary-600 text-xs md:text-sm font-bold">1</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">전문 상담사 1:1 매칭</h4>
-                    <p className="text-gray-600 text-sm">숙박업 경험이 풍부한 전문가가 직접 상담해드립니다</p>
+                    <h4 className="font-semibold text-gray-900 text-sm md:text-base">전문 상담사 1:1 매칭</h4>
+                    <p className="text-gray-600 text-xs md:text-sm">숙박업 경험이 풍부한 전문가가 직접 상담해드립니다</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary-600 text-sm font-bold">2</span>
+                  <div className="w-5 h-5 md:w-6 md:h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-primary-600 text-xs md:text-sm font-bold">2</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">맞춤형 솔루션 제안</h4>
-                    <p className="text-gray-600 text-sm">귀하의 상황에 최적화된 운영 방안을 제시합니다</p>
+                    <h4 className="font-semibold text-gray-900 text-sm md:text-base">맞춤형 솔루션 제안</h4>
+                    <p className="text-gray-600 text-xs md:text-sm">귀하의 상황에 최적화된 운영 방안을 제시합니다</p>
                   </div>
                 </div>
-                
-
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h4 className="font-semibold text-gray-900 mb-4">연락처 정보</h4>
-              <div className="space-y-3">
+            <div className="bg-gray-50 rounded-lg md:rounded-xl p-4 md:p-6">
+              <h4 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">연락처 정보</h4>
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-600">1588-1234</span>
+                  <Phone className="w-4 h-4 md:w-5 md:h-5 text-primary-600 flex-shrink-0" />
+                  <span className="text-gray-600 text-sm md:text-base">010-9531-8312</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-600">support@hosthelper.co.kr</span>
+                  <Mail className="w-4 h-4 md:w-5 md:h-5 text-primary-600 flex-shrink-0" />
+                  <span className="text-gray-600 text-sm md:text-base">lia@hautrip.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-600">평일 09:00 - 18:00</span>
+                  <MapPin className="w-4 h-4 md:w-5 md:h-5 text-primary-600 flex-shrink-0" />
+                  <span className="text-gray-600 text-sm md:text-base">평일 10:00 - 19:00</span>
                 </div>
               </div>
             </div>
