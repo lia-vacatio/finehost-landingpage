@@ -79,15 +79,15 @@ const Footer: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-primary-400" />
-                <span className="text-gray-300">1588-1234</span>
+                <span className="text-gray-300">010-9531-8312</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary-400" />
-                <span className="text-gray-300">support@hosthelper.co.kr</span>
+                <span className="text-gray-300">lia@hautrip.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-primary-400" />
-                <span className="text-gray-300">평일 09:00 - 18:00</span>
+                <span className="text-gray-300">평일 10:00 - 19:00</span>
               </div>
             </div>
           </motion.div>
@@ -102,9 +102,10 @@ const Footer: React.FC = () => {
           className="border-t border-gray-800 mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 FineHost. All rights reserved.
-            </p>
+            <div className="text-gray-400 text-sm">
+              <p>© 2024 주식회사 바카티오 Vacatio Inc.</p>
+              <p className="mt-1">서울특별시 마포구 마포대로4다길 31</p>
+            </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 개인정보처리방침

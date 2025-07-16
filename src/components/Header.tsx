@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  onNavigateToAbout: () => void;
+  onNavigateToShinsegae: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onNavigateToAbout }) => {
+const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToContact = () => {
@@ -30,24 +30,36 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToAbout }) => {
           </div>
 
           {/* Desktop Navigation + CTA */}
-          <div className="hidden md:flex items-center space-x-2">
-            <nav className="flex space-x-2">
-              <a href="#problems" className="text-gray-600 hover:text-primary-600 transition-colors px-3 py-2 rounded-md">
+          <div className="hidden md:flex items-center space-x-4">
+            <nav className="flex space-x-4">
+              <button 
+                onClick={onNavigateToShinsegae}
+                className="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors"
+              >
+                <img 
+                  src="/shinsegae.png" 
+                  alt="VIA SHINSEGAE 로고" 
+                  className="h-10 w-auto"
+                />
+              </button>
+              <a href="#problems" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
                 문제점
               </a>
-              <a href="#solutions" className="text-gray-600 hover:text-primary-600 transition-colors px-3 py-2 rounded-md">
+              <a href="#solutions" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
                 솔루션
               </a>
-              <a href="#dashboard" className="text-gray-600 hover:text-primary-600 transition-colors px-3 py-2 rounded-md">
-                데모
+              <a href="#dashboard" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
+                제품
               </a>
-              <button 
-                onClick={onNavigateToAbout}
-                className="text-gray-600 hover:text-primary-600 transition-colors px-3 py-2 rounded-md"
+              <a 
+                href="https://vacatio.career.greetinghr.com/ko/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center"
               >
                 회사 소개
-              </button>
-              <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors px-3 py-2 rounded-md">
+              </a>
+              <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors px-4 py-2 rounded-md font-medium flex items-center">
                 문의
               </a>
             </nav>
@@ -74,6 +86,20 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToAbout }) => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+              <button
+                onClick={() => {
+                  onNavigateToShinsegae();
+                  setIsMenuOpen(false);
+                }}
+                className="flex items-center px-3 py-2 text-gray-600 hover:text-primary-600 w-full text-left"
+              >
+                <img 
+                  src="/shinsegae.png" 
+                  alt="VIA SHINSEGAE 로고" 
+                  className="h-8 w-auto mr-3"
+                />
+                <span className="font-medium">VIA SHINSEGAE</span>
+              </button>
               <a
                 href="#problems"
                 className="block px-3 py-2 text-gray-600 hover:text-primary-600"
@@ -93,17 +119,17 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToAbout }) => {
                 className="block px-3 py-2 text-gray-600 hover:text-primary-600"
                 onClick={() => setIsMenuOpen(false)}
               >
-                데모
+                제품
               </a>
-              <button
-                onClick={() => {
-                  onNavigateToAbout();
-                  setIsMenuOpen(false);
-                }}
-                className="block px-3 py-2 text-gray-600 hover:text-primary-600 w-full text-left"
+              <a
+                href="https://vacatio.career.greetinghr.com/ko/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600"
               >
                 회사 소개
-              </button>
+              </a>
               <a
                 href="#contact"
                 className="block px-3 py-2 text-gray-600 hover:text-primary-600"

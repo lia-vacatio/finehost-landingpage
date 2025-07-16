@@ -1,44 +1,134 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
-import { TrendingUp, TrendingDown, Users, Calendar, DollarSign, Star } from 'lucide-react';
+import { Calendar, MessageSquare, DollarSign, BarChart3, Smartphone, Settings } from 'lucide-react';
+import FeeComparisonChart from './FeeComparisonChart';
 
 const Dashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  // Sample data for charts
-  const revenueData = [
-    { month: '1월', revenue: 1200000, bookings: 45 },
-    { month: '2월', revenue: 1400000, bookings: 52 },
-    { month: '3월', revenue: 1600000, bookings: 58 },
-    { month: '4월', revenue: 1800000, bookings: 65 },
-    { month: '5월', revenue: 2000000, bookings: 72 },
-    { month: '6월', revenue: 2200000, bookings: 78 }
+  // OTA 로고 목록
+  const otaLogos = [
+    "/ota logo/naver.png",
+    "/ota logo/yeogi.png", 
+    "/ota logo/airbnb.png",
+    "/ota logo/agoda.png",
+    "/ota logo/booking.png",
+    "/ota logo/nol.png"
   ];
 
-  const occupancyData = [
-    { name: '예약됨', value: 78, color: '#3b82f6' },
-    { name: '빈방', value: 22, color: '#e5e7eb' }
+  // 수수료 비교 데이터
+  const feeComparisonData = [
+    { service: "FineHost", fee: 3.3, isHighlighted: true },
+    { service: "경쟁 서비스 A", fee: 15, isHighlighted: false },
+    { service: "경쟁 서비스 B", fee: 12, isHighlighted: false }
   ];
 
-  const channelData = [
-    { name: '에어비앤비', value: 45, color: '#ff5a5f' },
-    { name: '부킹닷컴', value: 30, color: '#003580' },
-    { name: '직접 예약', value: 15, color: '#00a699' },
-    { name: '기타', value: 10, color: '#ffc107' }
-  ];
-
-  const stats = [
-    { title: '이번 달 매출', value: '2,200만원', change: '+10%', trend: 'up', icon: DollarSign },
-    { title: '예약률', value: '78%', change: '+5%', trend: 'up', icon: Calendar },
-    { title: '평균 평점', value: '4.8', change: '+0.2', trend: 'up', icon: Star },
-    { title: '총 예약', value: '78건', change: '+12%', trend: 'up', icon: Users }
+  const features = [
+    {
+      id: "ota-integration",
+      icon: Smartphone,
+      headline: "각 OTA를 매번 들어가 예약 확인하시나요?",
+      title: "모든 OTA 예약을 한 곳에서 관리할 수 있어요",
+      description: "네이버, 에어비앤비, 여기어때, 아고다까지 모든 OTA 예약을 하나의 대시보드에서 확인하세요. 더 이상 여러 앱을 번갈아가며 확인할 필요가 없습니다.",
+      benefits: [
+        "모든 OTA 예약을 실시간으로 확인",
+        "예약 상태 변경 시 즉시 반영",
+        "통합된 예약 관리로 실수 방지"
+      ],
+      image: "/ota-dashboard.png",
+      bgColor: "bg-white",
+      textColor: "text-gray-900",
+      showOtaLogos: true // 첫 번째 기능에만 OTA 로고 슬라이드 표시
+    },
+    {
+      id: "calendar-sync",
+      icon: Calendar,
+      headline: "중복 예약이 걱정되시나요?",
+      title: "달력 하나로 모든 예약을 실시간 동기화합니다",
+      description: "여러 OTA에서 동시에 예약이 들어와도 중복 예약 걱정 없이 안전하게 관리할 수 있습니다. 한 번의 방막기로 모든 채널에 반영됩니다.",
+      benefits: [
+        "실시간 캘린더 동기화",
+        "중복 예약 자동 방지",
+        "한 번의 클릭으로 모든 채널 방막기"
+      ],
+      image: "/calendar-sync.png",
+      bgColor: "bg-gray-50",
+      textColor: "text-gray-900",
+      showOtaLogos: false
+    },
+    {
+      id: "naver-fee",
+      icon: DollarSign,
+      headline: "네이버 연동, 수수료 걱정되시죠?",
+      title: "업계 최저 수수료로 네이버 연동을 지원합니다",
+      description: "네이버 예약 연동 시 발생하는 수수료 부담을 최소화했습니다. 업계 최저 수준의 수수료로 더 많은 수익을 남기실 수 있습니다.",
+      benefits: [
+        "업계 최저 수수료 적용",
+        "투명한 수수료 정책",
+        "수익성 극대화"
+      ],
+      image: "/naver-integration.png",
+      bgColor: "bg-white",
+      textColor: "text-gray-900",
+      showOtaLogos: false,
+      showFeeChart: true // 세 번째 기능에 수수료 차트 표시
+    },
+    {
+      id: "auto-message",
+      icon: MessageSquare,
+      headline: "매번 메시지 보내기 벅차셨죠?",
+      title: "체크인/체크아웃 기준 자동 메시지를 보내드려요",
+      description: "체크인 안내, 리뷰 요청 등 반복적인 메시지 발송을 자동화했습니다. 게스트에게 더 나은 서비스를 제공하면서도 업무 효율성을 높일 수 있습니다.",
+      benefits: [
+        "체크인/체크아웃 자동 메시지",
+        "맞춤형 메시지 템플릿",
+        "게스트 만족도 향상"
+      ],
+      image: "/auto-message.png",
+      bgColor: "bg-gray-50",
+      textColor: "text-gray-900",
+      showOtaLogos: false,
+      showFeeChart: false
+    },
+    {
+      id: "revenue-analytics",
+      icon: BarChart3,
+      headline: "매출 분석이 어려우시죠?",
+      title: "정산/예약 통계도 다 모아서 보여줘요",
+      description: "채널별 매출, 예약률, 평균 숙박일 등 중요한 지표를 한눈에 확인할 수 있습니다. 데이터 기반으로 더 나은 운영 결정을 내릴 수 있습니다.",
+      benefits: [
+        "실시간 매출 및 예약 통계",
+        "채널별 성과 분석",
+        "데이터 기반 운영 최적화"
+      ],
+      image: "/revenue-analytics.png",
+      bgColor: "bg-white",
+      textColor: "text-gray-900",
+      showOtaLogos: false,
+      showFeeChart: false
+    },
+    {
+      id: "price-optimization",
+      icon: Settings,
+      headline: "요금 설정이 복잡하시죠?",
+      title: "각 채널 요금도 한 번에 관리할 수 있어요",
+      description: "시즌별, 요일별, 이벤트별로 차등 요금을 설정하고 모든 OTA에 한 번에 적용할 수 있습니다. 수요에 맞는 최적 가격으로 수익을 극대화하세요.",
+      benefits: [
+        "시즌별/요일별 차등 요금 설정",
+        "모든 OTA 동시 적용",
+        "수요 기반 가격 최적화"
+      ],
+      image: "/price-optimization.png",
+      bgColor: "bg-gray-50",
+      textColor: "text-gray-900",
+      showOtaLogos: false,
+      showFeeChart: false
+    }
   ];
 
   return (
     <section id="dashboard" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        {/* Header */}
+        <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +136,7 @@ const Dashboard: React.FC = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
           >
-            실제 대시보드를 체험해보세요
+            실제로 어떻게 작동하는지 확인해보세요
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -55,218 +145,168 @@ const Dashboard: React.FC = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            복잡한 데이터를 한눈에 파악할 수 있는 직관적인 대시보드
+            복잡한 기술 없이도 직관적으로 사용할 수 있는 파인호스트의 핵심 기능들을 소개합니다
           </motion.p>
         </div>
 
-        {/* Stats Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-        >
-          {stats.map((stat, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                </div>
-                <div className={`p-3 rounded-lg ${stat.trend === 'up' ? 'bg-green-100' : 'bg-red-100'}`}>
-                  <stat.icon className={`w-6 h-6 ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`} />
-                </div>
-              </div>
-              <div className="flex items-center mt-2">
-                {stat.trend === 'up' ? (
-                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
-                ) : (
-                  <TrendingDown className="w-4 h-4 text-red-500 mr-1" />
-                )}
-                <span className={`text-sm font-medium ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
-                  {stat.change}
-                </span>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Dashboard Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
-        >
-          {/* Dashboard Header */}
-          <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">숙소 운영 대시보드</h3>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => setActiveTab('overview')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeTab === 'overview'
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-white text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  개요
-                </button>
-                <button
-                  onClick={() => setActiveTab('revenue')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeTab === 'revenue'
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-white text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  매출 분석
-                </button>
-                <button
-                  onClick={() => setActiveTab('occupancy')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeTab === 'occupancy'
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-white text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  예약 현황
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Dashboard Content */}
-          <div className="p-6">
-            {activeTab === 'overview' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Revenue Chart */}
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">매출 추이</h4>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={revenueData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
-                      <YAxis />
-                      <Tooltip formatter={(value) => `${value.toLocaleString()}원`} />
-                      <Line type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={3} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-
-                {/* Occupancy Chart */}
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">예약률</h4>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={occupancyData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {occupancyData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'revenue' && (
-              <div className="space-y-6">
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">월별 매출 및 예약 현황</h4>
-                  <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={revenueData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
-                      <YAxis yAxisId="left" />
-                      <YAxis yAxisId="right" orientation="right" />
-                      <Tooltip formatter={(value, name) => [
-                        name === 'revenue' ? `${value.toLocaleString()}원` : `${value}건`,
-                        name === 'revenue' ? '매출' : '예약'
-                      ]} />
-                      <Bar yAxisId="left" dataKey="revenue" fill="#3b82f6" name="매출" />
-                      <Bar yAxisId="right" dataKey="bookings" fill="#10b981" name="예약" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'occupancy' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">예약 채널별 분포</h4>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={channelData}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={100}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {channelData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">예약 현황</h4>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
-                      <span className="font-medium">오늘 체크인</span>
-                      <span className="text-primary-600 font-semibold">3건</span>
+        {/* Features */}
+        <div className="space-y-32">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.id}
+              id={feature.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`${feature.bgColor} rounded-3xl p-8 md:p-12 scroll-mt-24`}
+              style={{ scrollMarginTop: '120px' }}
+            >
+              <div className="max-w-6xl mx-auto">
+                {/* Content Grid - 좌우 교차 배치 */}
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                  index % 2 === 0 ? 'lg:grid-flow-col' : 'lg:grid-flow-col-dense'
+                }`}>
+                  
+                  {/* Text Content */}
+                  <div className={`space-y-6 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-primary-600 pl-6 py-2">
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                          {feature.headline}
+                        </h3>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                          <feature.icon className="w-6 h-6 text-primary-600" />
+                        </div>
+                        <h4 className="text-xl md:text-2xl font-semibold text-primary-600">
+                          {feature.title}
+                        </h4>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
-                      <span className="font-medium">오늘 체크아웃</span>
-                      <span className="text-primary-600 font-semibold">2건</span>
+
+                    {/* Description */}
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+
+                    {/* Benefits */}
+                    <div className="space-y-3">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div key={benefitIndex} className="flex items-center">
+                          <div className="w-2 h-2 bg-primary-600 rounded-full mr-3"></div>
+                          <span className="text-gray-700">{benefit}</span>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
-                      <span className="font-medium">이번 주 예약</span>
-                      <span className="text-primary-600 font-semibold">15건</span>
-                    </div>
-                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
-                      <span className="font-medium">다음 주 예약</span>
-                      <span className="text-primary-600 font-semibold">22건</span>
+                  </div>
+
+                  {/* Image Content */}
+                  <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div className="relative">
+                      {/* Image Container - 수수료 차트가 있는 경우 제외 */}
+                      {!feature.showFeeChart && (
+                        <div className="relative w-full max-w-[550px] mx-auto">
+                          <div className="bg-gray-100 rounded-xl shadow-md overflow-hidden">
+                            <img 
+                              src={feature.image} 
+                              alt={`${feature.title} 스크린샷`}
+                              className="w-full h-auto object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                target.nextElementSibling?.classList.remove('hidden');
+                              }}
+                            />
+                            {/* Placeholder */}
+                            <div className="hidden w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="w-16 h-16 bg-gray-300 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                                  <feature.icon className="w-8 h-8 text-gray-500" />
+                                </div>
+                                <p className="text-gray-500 font-medium">{feature.title}</p>
+                                <p className="text-gray-400 text-sm mt-2">스크린샷 준비 중</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Decorative Elements */}
+                          <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary-100 rounded-full opacity-50"></div>
+                          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary-100 rounded-full opacity-50"></div>
+                        </div>
+                      )}
+
+                      {/* OTA Logos - 첫 번째 기능에만 표시 */}
+                      {feature.showOtaLogos && (
+                        <motion.div 
+                          className="mt-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="text-center mb-3">
+                            <p className="text-xs text-gray-500 font-medium">연동되는 OTA 플랫폼</p>
+                          </div>
+                          <div className="bg-white rounded-lg shadow-sm p-3">
+                            <div className="flex justify-center items-center space-x-4">
+                              {otaLogos.map((logo, logoIndex) => (
+                                <img
+                                  key={logoIndex}
+                                  src={logo}
+                                  alt="OTA 로고"
+                                  className="h-6 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* Fee Comparison Chart - 세 번째 기능에만 표시 */}
+                      {feature.showFeeChart && (
+                        <motion.div 
+                          className="w-full max-w-[550px] mx-auto"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          viewport={{ once: true }}
+                        >
+                          <FeeComparisonChart 
+                            data={feeComparisonData}
+                            caption="같은 예약, 수수료는 1/5 수준입니다."
+                          />
+                        </motion.div>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
 
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-20"
         >
-          <p className="text-lg text-gray-600 mb-6">
-            이런 대시보드를 실제로 사용해보고 싶으신가요?
-          </p>
-          <button className="btn-primary">
-            무료로 시작하기
-          </button>
+          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-3xl p-12 border border-primary-100">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              지금 바로 시작해보세요
+            </h3>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              파인호스트와 함께라면 숙소 운영이 훨씬 더 간단해집니다. 
+              전문 상담사가 1:1로 도와드립니다.
+            </p>
+            <button className="btn-primary">
+              무료 상담 신청하기
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

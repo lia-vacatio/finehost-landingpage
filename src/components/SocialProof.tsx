@@ -1,77 +1,127 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const SocialProof: React.FC = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-  const [currentPartnerIndex, setCurrentPartnerIndex] = useState(0);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   const partners = [
     {
       name: "위드홈",
-      description: "제주 프리미엄 독채 운영사",
-      logo: "🏠"
+      description: "제주 숙소 40채 위탁 운영",
+      logo: "/withhome.jpg",
+      website: "https://www.instagram.com/with_home_jeju_/"
     },
     {
       name: "제주독거",
-      description: "제주도 최고의 숙박 관리사",
-      logo: "🏝️"
+      description: "숙소 위탁운영사 ‘트러스테이’ 운영",
+      logo: "/jejudoccc.jpg",
+      website: "https://www.instagram.com/jejudoccc/"
     },
     {
       name: "웨일로",
-      description: "전국 숙박업 전문 관리사",
-      logo: "🐋"
+      description: "서울최초 도심형 하이엔드 패밀리 료칸스테이",
+      logo: "/whalero.jpg",
+      website: "https://www.instagram.com/whalero.z/"
     }
   ];
 
   const partnerBrands = [
-    "조천욕장", "시기공주", "폴개코", "아노료사케", 
-    "제주스테이", "해운대리조트", "부산게스트", "강릉펜션"
+    { name: "감숙소", logo: "/gamsung sukso logo/1.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/2.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/3.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/4.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/5.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/6.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/7.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/8.avif" },
+    { name: "감숙소", logo: "/gamsung sukso logo/9.avif" }
   ];
 
   const testimonials = [
     {
-      name: "경수 대표님",
-      role: "숙박업 운영",
+      name: "김영수 대표님",
+      role: "제주 프리미엄 독채 운영",
       location: "제주도",
       rating: 5,
-      content: "파인호스트가 진행한 웨비나도 들어봤는데요, 이 회사는 진정성이 느껴집니다. 유난히 정보가 없는 숙박업 시장에서 호스트들을 지지해주고 도와주려는 회사가 있다는 것에 감동받았습니다. 감사합니다.",
+      content: "파인호스트 덕분에 숙소 운영이 훨씬 수월해졌어요. 예약 관리부터 정산까지 한 번에 처리할 수 있어서 정말 편리합니다. 특히 고객 문의 응대가 자동화되어 시간을 많이 절약할 수 있어요.",
       avatar: "👨‍💼"
     },
     {
-      name: "창식 대표님",
-      role: "숙박업 운영",
-      location: "가평",
+      name: "박미영 사장님",
+      role: "강릉 펜션 운영",
+      location: "강릉",
       rating: 5,
-      content: "숙소를 운영하면서 난생 처음 마주하는 상황 때문에 고민하다가 파인호스트에 들어오면 해결된 적이 많아요. 사소한 문제들부터 중요한 고비들까지 다 도움받고 있어요. 든든한 지원군 같은 존재죠.",
-      avatar: "👨‍💼"
-    },
-    {
-      name: "성민 대표님",
-      role: "숙박업 운영",
-      location: "제주도",
-      rating: 5,
-      content: "처음에는 일반적인 회사인 줄 알았어요. 그런데 아니더라구요. 호스트 의견에 귀기울이는 회사는 처음이었어요. 호스트가 고민하는 부분들을 매번 딱 좋은 타이밍에 물어봐줘서 고마워요. 항상 열정을 가지고 일한다는 게 느껴져요.",
-      avatar: "👨‍💼"
-    },
-    {
-      name: "지희 대표님",
-      role: "숙박업 운영",
-      location: "경주",
-      rating: 5,
-      content: "이제 막 숙소 오픈하는 제 지인한테도 알려줬어요. 파인호스트, 파인스테이 모두 다요. 그 지인도 좋은 서비스 알려줘서 고맙다고 하더라구요. 이런 야무진 회사가 승승장구해야 마땅하다고 생각해요. 앞으로도 늘 화이팅입니다!",
+      content: "처음에는 걱정이 많았는데, 파인호스트 사용 후 완전히 바뀌었어요. 매출이 30% 증가했고, 고객 만족도도 훨씬 높아졌습니다. 정말 감사합니다!",
       avatar: "👩‍💼"
     },
     {
-      name: "은주 대표님",
-      role: "숙박업 운영",
+      name: "이철수 대표님",
+      role: "부산 게스트하우스 운영",
+      location: "부산",
+      rating: 5,
+      content: "여러 OTA 플랫폼을 한 번에 관리할 수 있어서 정말 좋아요. 파인호스트 없이는 운영하기 어려웠을 것 같습니다. 추천합니다!",
+      avatar: "👨‍💼"
+    },
+    {
+      name: "최지영 사장님",
+      role: "가평 펜션 운영",
+      location: "가평",
+      rating: 5,
+      content: "파인호스트의 자동화 기능이 정말 대단해요. 예약 확인부터 체크인까지 모든 과정이 자동으로 처리되어서 손님들도 만족하고 저도 편해요.",
+      avatar: "👩‍💼"
+    },
+    {
+      name: "정민호 대표님",
+      role: "경주 호텔 운영",
       location: "경주",
       rating: 5,
-      content: "파인호스트 임직원분들께 진심어린 감사인사를 드립니다. 많은 분들과 소통할 수 있게 해주신 것만으로도 정말 감사드리는데, 이렇게 표창장까지 직접 보내주셔서 더더 감사합니다. 저 또한 좋은 정보 많이 공유하도록 하겠습니다. 진심으로 감사드립니다.",
+      content: "파인호스트 도입 후 운영 효율성이 크게 향상되었습니다. 특히 실시간 매출 분석과 예약 현황을 한눈에 볼 수 있어서 정말 유용해요.",
+      avatar: "👨‍💼"
+    },
+    {
+      name: "한소영 사장님",
+      role: "해운대 리조트 운영",
+      location: "부산 해운대",
+      rating: 5,
+      content: "파인호스트의 고객 관리 시스템이 정말 훌륭해요. 고객 데이터를 체계적으로 관리할 수 있어서 마케팅에도 도움이 많이 됩니다.",
+      avatar: "👩‍💼"
+    },
+    {
+      name: "송태현 대표님",
+      role: "제주 스테이 운영",
+      location: "제주도",
+      rating: 5,
+      content: "파인호스트 덕분에 숙소 운영이 완전히 바뀌었어요. 예약 관리가 훨씬 체계적이 되었고, 고객 응대도 자동화되어 정말 편리합니다.",
+      avatar: "👨‍💼"
+    },
+    {
+      name: "임수진 사장님",
+      role: "강릉 모텔 운영",
+      location: "강릉",
+      rating: 5,
+      content: "파인호스트 사용 후 매출이 크게 증가했어요. 특히 요금 최적화 기능이 정말 유용하고, 고객 만족도도 높아졌습니다.",
       avatar: "👩‍💼"
     }
   ];
 
+  // Auto-play functionality for reviews
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      setCurrentReviewIndex((prev) => (prev + 3) % testimonials.length);
+    }, 5000);
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [testimonials.length]);
+
+
+
+  // Manual navigation
   const nextReview = () => {
     setCurrentReviewIndex((prev) => (prev + 3) % testimonials.length);
   };
@@ -80,16 +130,11 @@ const SocialProof: React.FC = () => {
     setCurrentReviewIndex((prev) => (prev - 3 + testimonials.length) % testimonials.length);
   };
 
-  const nextPartner = () => {
-    setCurrentPartnerIndex((prev) => (prev + 6) % partnerBrands.length);
-  };
-
-  const prevPartner = () => {
-    setCurrentPartnerIndex((prev) => (prev - 6 + partnerBrands.length) % partnerBrands.length);
+  const goToReview = (index: number) => {
+    setCurrentReviewIndex(index * 3);
   };
 
   const visibleReviews = testimonials.slice(currentReviewIndex, currentReviewIndex + 3);
-  const visiblePartners = partnerBrands.slice(currentPartnerIndex, currentPartnerIndex + 6);
 
   return (
     <section className="w-full bg-white py-24">
@@ -115,31 +160,66 @@ const SocialProof: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-20"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">주요 파트너사</h3>
-            <p className="text-secondary-600">신뢰할 수 있는 파트너사들과 함께합니다</p>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">이미 수많은 전문 운영사들이 선택한 FineHost</h3>
+            <p className="text-gray-600 text-lg">믿고 맡기는 파트너들이 증명합니다</p>
           </motion.div>
 
-          {/* Main Partners */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Main Partners - New Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {partners.map((partner, index) => (
               <motion.div
                 key={partner.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-100"
+                className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-primary-200 shadow-md"
               >
-                <div className="text-4xl mb-4">{partner.logo}</div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-2">{partner.name}</h4>
-                <p className="text-secondary-600">{partner.description}</p>
+                <div className="flex items-center gap-4">
+                  {/* Logo Section - Left */}
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 flex items-center justify-center group">
+                      <img 
+                        src={partner.logo} 
+                        alt={`${partner.name} 로고`}
+                        className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="w-16 h-16 flex items-center justify-center hidden">
+                        <span className="text-gray-500 text-sm font-medium">{partner.name}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Section - Center */}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-1 truncate">{partner.name}</h4>
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{partner.description}</p>
+                  </div>
+
+                  {/* Website Button - Right */}
+                  <div className="flex-shrink-0">
+                    <a
+                      href={partner.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors duration-200 whitespace-nowrap hover:underline"
+                    >
+                      홈페이지 보기
+                    </a>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Partner Brands Slider */}
+          {/* Partner Brands Infinite Scroll */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,35 +227,37 @@ const SocialProof: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <h4 className="text-lg font-semibold text-gray-900 mb-6 text-center">협력 숙소</h4>
+            <h4 className="text-xl font-semibold text-gray-900 mb-10 text-center">국내에서 제일 가는 숙소의 사장님들은 이미 파인호스트를 사용 중이에요.</h4>
             
-            <div className="flex items-center justify-between">
-              <button
-                onClick={prevPartner}
-                className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+            <div className="overflow-hidden">
+              <motion.div
+                animate={{ x: [0, -100 * partnerBrands.length] }}
+                transition={{ 
+                  duration: 15, 
+                  repeat: Infinity, 
+                  ease: "linear",
+                  repeatType: "loop"
+                }}
+                className="flex gap-16"
+                style={{ width: `${partnerBrands.length * 100}%` }}
               >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
-              </button>
-
-              <div className="flex-1 mx-4 overflow-hidden">
-                <div className="flex gap-6 justify-center">
-                  {visiblePartners.map((brand, index) => (
-                    <div
-                      key={index}
-                      className="flex-shrink-0 bg-white px-6 py-3 rounded-xl border border-gray-200 shadow-sm"
-                    >
-                      <span className="text-gray-700 font-medium">{brand}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={nextPartner}
-                className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
-              >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
-              </button>
+                {[...partnerBrands, ...partnerBrands].map((brand, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex-shrink-0 flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                  >
+                    <img 
+                      src={brand.logo} 
+                      alt={`${brand.name} 로고`}
+                      className="w-32 h-24 object-contain drop-shadow-md opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -189,8 +271,8 @@ const SocialProof: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">실제 사용자 후기</h3>
-            <p className="text-secondary-600">FineHost를 사용하는 숙박업주님들의 생생한 후기입니다</p>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">실제 고객사 후기</h3>
+            <p className="text-secondary-600">파인호스트를 사용하는 숙박업주님들의 생생한 후기입니다</p>
           </motion.div>
 
           {/* Reviews Slider */}
@@ -201,74 +283,51 @@ const SocialProof: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="flex items-center justify-between mb-8">
-              <button
-                onClick={prevReview}
-                className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+            <div className="overflow-hidden">
+              <motion.div
+                animate={{ x: [0, -100 * Math.ceil(testimonials.length / 3)] }}
+                transition={{ 
+                  duration: 20, 
+                  repeat: Infinity, 
+                  ease: "linear",
+                  repeatType: "loop"
+                }}
+                className="flex gap-6"
+                style={{ width: `${Math.ceil(testimonials.length / 3) * 100}%` }}
               >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
-              </button>
+                {testimonials.map((review, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex-shrink-0 w-80 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
+                  >
+                    {/* Quote Icon */}
+                    <div className="text-gray-200 mb-4">
+                      <Quote size={20} />
+                    </div>
 
-              <div className="flex-1 mx-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {visibleReviews.map((review, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200"
-                    >
-                      {/* Quote Icon */}
-                      <div className="text-gray-200 mb-4">
-                        <Quote size={20} />
+                    {/* Rating */}
+                    <div className="flex items-center mb-4">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+
+                    {/* Content */}
+                    <p className="text-gray-700 mb-4 leading-relaxed text-sm">
+                      "{review.content}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center">
+                      <div className="text-xl mr-3">{review.avatar}</div>
+                      <div>
+                        <div className="font-semibold text-gray-900 text-sm">{review.name}</div>
+                        <div className="text-xs text-secondary-600">{review.role} / {review.location}</div>
                       </div>
-
-                      {/* Rating */}
-                      <div className="flex items-center mb-4">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-
-                      {/* Content */}
-                      <p className="text-gray-700 mb-4 leading-relaxed text-sm">
-                        "{review.content}"
-                      </p>
-
-                      {/* Author */}
-                      <div className="flex items-center">
-                        <div className="text-xl mr-3">{review.avatar}</div>
-                        <div>
-                          <div className="font-semibold text-gray-900 text-sm">{review.name}</div>
-                          <div className="text-xs text-secondary-600">{review.role} / {review.location}</div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={nextReview}
-                className="p-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
-              >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center space-x-2">
-              {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentReviewIndex(index * 3)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    currentReviewIndex === index * 3 ? 'bg-primary-600' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         </div>

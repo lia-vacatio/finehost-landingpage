@@ -55,14 +55,11 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex justify-center items-center"
           >
             <button className="btn-primary flex items-center space-x-2">
               <span>무료 상담 신청</span>
               <ArrowRight size={20} />
-            </button>
-            <button className="btn-secondary">
-              데모 보기
             </button>
           </motion.div>
 

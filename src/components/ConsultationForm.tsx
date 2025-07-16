@@ -13,24 +13,86 @@ interface FormData {
 
 const ConsultationForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    // In a real app, this would submit to Google Forms or your backend
-    console.log('Form submitted:', data);
+    console.log('🎯🎯🎯 올바른 onSubmit 함수 실행됨! 🎯🎯🎯');
+    console.log('📝 받은 데이터:', data);
+    alert('상담 신청을 보내는 중입니다.'); // 확실한 확인용
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsSubmitting(true);
     
-    setIsSubmitted(true);
-    reset();
+    try {
+      // Google Apps Script 웹 앱 URL
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjZzGdxf8zHpkV1vq2JgRSN-B5MgNKB5LoU3fvyx8JrFnYyBrXyPebypEBbfC3eX09/exec';
+      
+      console.log('📡 API 호출 시작!', data);
+      console.log('🔗 사용 중인 URL:', APPS_SCRIPT_URL);
+      
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          propertyType: getPropertyTypeLabel(data.propertyType),
+          roomCount: getRoomCountLabel(data.roomCount),
+          message: data.message || ''
+        })
+      });
+      
+      console.log('응답 상태:', response.status);
+      console.log('응답 타입:', response.type);
+      
+      // no-cors 모드에서는 응답을 읽을 수 없으므로 성공으로 간주
+      if (response.type === 'opaque') {
+        console.log('CORS 우회 모드 - 요청이 전송되었습니다');
+        setIsSubmitted(true);
+        reset();
+        console.log('상담신청이 전송되었습니다! (CORS 우회 모드)');
+      } else {
+        // 일반 모드에서는 응답 확인
+        const result = await response.json();
+        console.log('서버 응답:', result);
+        
+        if (result.success) {
+          setIsSubmitted(true);
+          reset();
+          console.log('상담신청이 성공적으로 전송되었습니다!');
+        } else {
+          throw new Error(result.message || '전송 중 오류가 발생했습니다');
+        }
+      }
+    } catch (error) {
+      console.error('상담신청 전송 오류:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error('오류 상세:', errorMessage);
+      alert(`상담신청 전송 중 오류가 발생했습니다.\n오류: ${errorMessage}\n다시 시도해주세요.`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // 선택값을 한글 라벨로 변환하는 헬퍼 함수들
+  const getPropertyTypeLabel = (value: string) => {
+    const type = propertyTypes.find(t => t.value === value);
+    return type ? type.label : value;
+  };
+
+  const getRoomCountLabel = (value: string) => {
+    const count = roomCounts.find(c => c.value === value);
+    return count ? count.label : value;
   };
 
   const propertyTypes = [
-    { value: 'guesthouse', label: '게스트하우스' },
     { value: 'pension', label: '펜션' },
-    { value: 'hotel', label: '소형호텔' },
-    { value: 'motel', label: '모텔' },
+    { value: 'guesthouse', label: '게스트하우스' },
+    { value: 'camping', label: '캠핑/야영장' },
+    { value: 'hanok', label: '한옥숙박' },
     { value: 'other', label: '기타' }
   ];
 
@@ -123,7 +185,7 @@ const ConsultationForm: React.FC = () => {
                       }
                     })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="010-1234-5678"
+                                          placeholder="010-9531-8312"
                   />
                   {errors.phone && (
                     <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
@@ -188,9 +250,21 @@ const ConsultationForm: React.FC = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full btn-primary py-4 text-lg"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 text-lg rounded-lg font-semibold transition-all duration-300 ${
+                    isSubmitting 
+                      ? 'bg-gray-400 cursor-not-allowed text-gray-600' 
+                      : 'btn-primary hover:bg-primary-700'
+                  }`}
                 >
-                  무료 상담 신청하기
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>전송 중...</span>
+                    </div>
+                  ) : (
+                    '무료 상담 신청하기'
+                  )}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">
@@ -233,15 +307,7 @@ const ConsultationForm: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-primary-600 text-sm font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">무료 체험 제공</h4>
-                    <p className="text-gray-600 text-sm">30일간 모든 기능을 무료로 체험해보실 수 있습니다</p>
-                  </div>
-                </div>
+
               </div>
             </div>
 

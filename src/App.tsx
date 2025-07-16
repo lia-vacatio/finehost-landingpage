@@ -7,12 +7,12 @@ import Dashboard from './components/Dashboard';
 import SocialProof from './components/SocialProof';
 import ConsultationForm from './components/ConsultationForm';
 import Footer from './components/Footer';
-import About from './pages/About';
+import Shinsegae from './pages/Shinsegae';
 
-function HomePage({ onNavigateToAbout }: { onNavigateToAbout: () => void }) {
+function HomePage({ onNavigateToShinsegae }: { onNavigateToShinsegae: () => void }) {
   return (
     <div className="App">
-      <Header onNavigateToAbout={onNavigateToAbout} />
+      <Header onNavigateToShinsegae={onNavigateToShinsegae} />
       <Hero />
       <Problems />
       <Solutions />
@@ -25,15 +25,15 @@ function HomePage({ onNavigateToAbout }: { onNavigateToAbout: () => void }) {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'shinsegae'>('home');
 
-  const navigateToAbout = () => setCurrentPage('about');
+  const navigateToShinsegae = () => setCurrentPage('shinsegae');
   const navigateToHome = () => setCurrentPage('home');
 
   return (
     <div>
-      {currentPage === 'home' && <HomePage onNavigateToAbout={navigateToAbout} />}
-      {currentPage === 'about' && <About onNavigateToHome={navigateToHome} />}
+      {currentPage === 'home' && <HomePage onNavigateToShinsegae={navigateToShinsegae} />}
+      {currentPage === 'shinsegae' && <Shinsegae onNavigateToHome={navigateToHome} />}
     </div>
   );
 }

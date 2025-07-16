@@ -1,86 +1,125 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const problems = [
-  {
-    icon: '⏰',
-    title: 'OTA 들어가서 또 확인하고 또 막고…',
-    desc: '예약 막으려고 하루에 몇 번씩 OTA에 들어가고 계신가요?'
-  },
-  {
-    icon: '💰',
-    title: '가격 경쟁, 감으로만 해도 괜찮을까요?',
-    desc: '주변 숙소 가격은 확인도 어렵고, 나만 비싸거나 싸게 받고 있는 건 아닐까 걱정되시죠?'
-  },
-  {
-    icon: '📞',
-    title: '메시지 하나 보내는 것도 일이에요',
-    desc: '체크인 안내, 리뷰 요청, 다 해야 하는데 매번 수기로 하려니 너무 벅차요'
-  },
-  {
-    icon: '📉',
-    title: '매출은 올랐는데… 진짜 수익이 났을까요?',
-    desc: '예약은 늘었는데, 실제로 남는 돈이 있는지는 감이 잘 안 오시죠?'
-  },
-  {
-    icon: '📢',
-    title: '광고나 SNS는 남 얘기 같아요',
-    desc: '내 숙소만의 매력을 알리고 싶은데, 어디서부터 시작해야 할지 막막하진 않으세요?'
-  },
-  {
-    icon: '🧾',
-    title: '예약, 청소, 정산까지 다 직접?',
-    desc: '모든 프로세스를 수기로 하다보니 실수도 잦고, 관리가 버겁지 않으세요?'
-  },
-];
+import { Calendar, FileText, Smartphone, Settings } from 'lucide-react';
 
 const Problems: React.FC = () => {
+  const problems = [
+    {
+      icon: Calendar,
+      title: "예약 관리가 복잡해요",
+      details: [
+        "채널마다 방막기 따로",
+        "중복 예약 피하려고 수기 확인",
+        "네이버 연동은 수수료가 너무 높음"
+      ],
+      userQuote: "예약은 잘 되는데, 내가 이걸 계속 혼자 감당할 수 있을까 싶었어요.",
+      color: "from-red-50 to-orange-50",
+      borderColor: "border-red-100",
+      iconBg: "bg-red-100",
+      iconColor: "text-red-600"
+    },
+    {
+      icon: FileText,
+      title: "운영 업무가 너무 많아요",
+      details: [
+        "메시지 직접 발송해야 해서 번거로움",
+        "요금 설정 매번 헷갈림",
+        "예약·정산은 엑셀로 따로 관리"
+      ],
+      userQuote: "하루 종일 예약 확인하고 메시지 보내다 보니,\n일에 계속 끌려다니게 되는 기분이더라구요",
+      color: "from-blue-50 to-indigo-50",
+      borderColor: "border-blue-100",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600"
+    }
+  ];
+
   return (
     <section id="problems" className="w-full bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16">
+        {/* Header */}
+        <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center text-4xl md:text-5xl font-semibold text-gray-900 mb-3 tracking-tight"
+            className="text-4xl md:text-5xl font-semibold text-gray-900 mb-6 tracking-tight"
           >
-            이런 고민, 혼자만 하고 계신가요?
+            숙소 하나 운영하는데, 왜 이렇게 신경 쓸 게 많죠?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-center text-base md:text-lg text-secondary-500 max-w-2xl mx-auto font-normal"
+            className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
-            숙박업주 분들이 공통적으로 겪는 운영 스트레스를 짚어드립니다.<br />
-            <span className="text-primary-600 font-medium">FineHost</span>는 이 모든 문제의 실질적인 해답이 됩니다.
+            숙박업주 분들이 공통적으로 겪는 현실적인 운영 스트레스입니다.<br />
+            이런 고민들, 혼자 해결하기 어려우시죠?
           </motion.p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {problems.map((problem, idx) => (
+
+        {/* Problems Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+          {problems.map((problem, index) => (
             <motion.div
-              key={problem.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * idx }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-8 shadow-lg flex flex-col items-center text-center border border-transparent hover:border-primary-400 hover:shadow-xl transition-all duration-200 ease-in-out hover:-translate-y-1"
+              className="group"
             >
-              <div className="mb-5 flex items-center justify-center w-16 h-16 rounded-full bg-primary-50 text-3xl">
-                {problem.icon}
-              </div>
-              <div className="font-semibold text-xl text-gray-900 mb-2 tracking-tight">
-                {problem.title}
-              </div>
-              <div className="text-secondary-600 text-base leading-relaxed font-normal">
-                {problem.desc}
+              <div className={`bg-gradient-to-br ${problem.color} rounded-3xl p-8 h-full border ${problem.borderColor} shadow-lg hover:shadow-xl transition-all duration-300`}>
+                {/* Icon */}
+                <div className="flex items-center mb-6">
+                  <div className={`w-16 h-16 ${problem.iconBg} rounded-2xl flex items-center justify-center mr-4`}>
+                    <problem.icon className={`w-8 h-8 ${problem.iconColor}`} />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                    {problem.title}
+                  </h3>
+                </div>
+
+                {/* Details */}
+                <div className="space-y-3 mb-8">
+                  {problem.details.map((detail, detailIndex) => (
+                    <div key={detailIndex} className="flex items-start">
+                      <div className="w-2 h-2 bg-gray-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-gray-700 leading-relaxed">{detail}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* User Quote */}
+                <div className="bg-white/60 rounded-2xl p-6 border border-white/80">
+                  <p className="text-gray-600 text-sm italic leading-relaxed whitespace-pre-line">
+                    "{problem.userQuote}"
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Transition */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-12 border border-gray-200 max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4">
+              이런 문제들, 이제 해결할 차례입니다
+            </h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              복잡한 기술 없이도, 실제로 필요한 결과만을 제공하는 솔루션을 준비했습니다.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
