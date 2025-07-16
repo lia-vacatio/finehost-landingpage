@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-xs md:text-sm text-center md:text-left">
-              <p>© 2024 주식회사 바카티오 Vacatio Inc.</p>
+              <p>© 2025 주식회사 바카티오 Vacatio Inc.</p>
               <p className="mt-1">서울특별시 마포구 마포대로4다길 31</p>
             </div>
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">

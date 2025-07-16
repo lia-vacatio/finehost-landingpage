@@ -46,7 +46,7 @@ const Problems: React.FC = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4 md:mb-6 tracking-tight leading-tight"
           >
-            숙소 하나 운영하는데, 왜 이렇게 신경 쓸 게 많죠?
+            숙소 PMS 운영, 왜 이렇게 복잡하고 신경 쓸 게 많죠?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ const Problems: React.FC = () => {
             className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
             숙박업주 분들이 공통적으로 겪는 현실적인 운영 스트레스입니다.<br />
-            이런 고민들, 혼자 해결하기 어려우시죠?
+            네이버연동부터 OTA 관리까지, 이런 고민들 혼자 해결하기 어려우시죠?
           </motion.p>
         </div>
 

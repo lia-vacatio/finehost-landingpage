@@ -181,7 +181,7 @@ const SocialProof: React.FC = () => {
                     <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center group">
                       <img 
                         src={partner.logo} 
-                        alt={`${partner.name} 로고`}
+                        alt={`${partner.name} - 파인호스트 숙소관리 PMS 솔루션 파트너 로고`}
                         className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300 ease-in-out"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -246,7 +246,7 @@ const SocialProof: React.FC = () => {
                   >
                     <img 
                       src={brand.logo} 
-                      alt={`${brand.name} 로고`}
+                      alt={`${brand.name} - 파인호스트 숙소관리 솔루션 고객 브랜드 로고`}
                       className="w-20 h-16 md:w-24 md:h-18 lg:w-32 lg:h-24 object-contain drop-shadow-md opacity-80 hover:opacity-100 transition-opacity duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;

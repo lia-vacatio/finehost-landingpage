@@ -211,7 +211,7 @@ const Dashboard: React.FC = () => {
                           <div className="bg-gray-100 rounded-lg md:rounded-xl shadow-md overflow-hidden">
                             <img 
                               src={feature.image} 
-                              alt={`${feature.title} 스크린샷`}
+                              alt={`파인호스트 ${feature.title} - 숙소 PMS CMS 관리 솔루션 대시보드 화면`}
                               className="w-full h-auto object-cover"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
@@ -255,7 +255,7 @@ const Dashboard: React.FC = () => {
                                 <img
                                   key={logoIndex}
                                   src={logo}
-                                  alt="OTA 로고"
+                                  alt={`${logo.includes('naver') ? '네이버예약' : logo.includes('yeogi') ? '여기어때' : logo.includes('airbnb') ? '에어비앤비' : logo.includes('agoda') ? '아고다' : logo.includes('booking') ? '부킹닷컴' : 'OTA'} 연동 로고 - 파인호스트 숙소관리솔루션`}
                                   className="h-4 md:h-6 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
                                 />
                               ))}

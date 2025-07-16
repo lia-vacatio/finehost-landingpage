@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# 숙소 관리 솔루션 파인호스트
+# Allow all search engines to crawl the site
+
+# Sitemap location
+Sitemap: https://finehost.co.kr/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Disallow specific paths if needed
+# Disallow: /admin/
+# Disallow: /private/ 

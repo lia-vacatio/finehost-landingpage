@@ -85,7 +85,7 @@ const Solutions: React.FC = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 mb-4 md:mb-6 tracking-tight leading-tight"
           >
-            운영이 편해지니, 숙소가 더 잘 돌아갑니다
+            파인호스트 PMS로 숙소 운영이 편해지니, 매출이 더 늘어납니다
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -94,8 +94,8 @@ const Solutions: React.FC = () => {
             viewport={{ once: true }}
             className="text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
-            복잡한 기술 없이도, 실제로 필요한 결과만을 제공합니다.<br />
-            이제 불안 없이 숙소를 운영하세요.
+            복잡한 네이버연동, 아고다연동, 문자메시지자동화를 쉽게 해결하고,<br />
+            실제로 필요한 CMS 기능만을 제공합니다. 이제 불안 없이 숙소를 운영하세요.
           </motion.p>
         </div>
 

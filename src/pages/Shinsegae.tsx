@@ -324,7 +324,7 @@ const Shinsegae: React.FC<ShinsegaeProps> = ({ onNavigateToHome }) => {
                   <div className="relative max-w-[250px]">
                     <img
                       src="/sinsegae app screen/home-screen.png"
-                      alt="프리미엄 여행"
+                      alt="신세계여행 프리미엄 여행 앱 화면 - 파인호스트 숙소관리 솔루션 파트너십"
                       className="rounded-2xl shadow-xl border border-gray-700"
                     />
                     <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-sm px-4 py-1 rounded-full shadow-md">
@@ -336,7 +336,7 @@ const Shinsegae: React.FC<ShinsegaeProps> = ({ onNavigateToHome }) => {
                   <div className="relative max-w-[250px]">
                     <img
                       src="/sinsegae app screen/find.png"
-                      alt="감성 숙소 큐레이션"
+                      alt="신세계여행 감성 숙소 큐레이션 앱 화면 - 파인호스트 PMS 솔루션"
                       className="rounded-2xl shadow-xl border border-gray-700"
                     />
                     <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-sm px-4 py-1 rounded-full shadow-md">

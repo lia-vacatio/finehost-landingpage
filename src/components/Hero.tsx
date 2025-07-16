@@ -7,29 +7,29 @@ const Hero: React.FC = () => {
     <section className="py-8 md:pt-32 md:pb-16 bg-gradient-to-br from-primary-50 to-secondary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          {/* Main Headline */}
+          {/* Main Headline - SEO 최적화된 제목 */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-2xl md:text-4xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight"
           >
-            <div className="mb-2 md:mb-4">숙소 운영</div>
-            <div>지금보다 훨씬 더 간단해질 수 있습니다</div>
+            <div className="mb-2 md:mb-4">숙소 PMS CMS 운영이</div>
+            <div>파인호스트로 훨씬 더 간단해집니다</div>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - 핵심 키워드 포함 */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            예약 관리부터 요금 설정, 정산까지<br />
-            이제 파인호스트에서 한번에 해결하세요
+            네이버연동, 아고다연동, 예약관리부터 문자메시지자동화까지<br />
+            신세계여행 파트너십으로 더욱 안전하게 한번에 해결하세요
           </motion.p>
 
-          {/* Key Benefits */}
+          {/* Key Benefits - SEO 키워드 강화 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
           >
             <div className="flex items-center justify-center space-x-2 text-gray-700">
               <CheckCircle className="text-green-500" size={20} />
-              <span className="text-sm md:text-base">방막기 자동화</span>
+              <span className="text-sm md:text-base">OTA 자동연동</span>
             </div>
             <div className="flex items-center justify-center space-x-2 text-gray-700">
               <CheckCircle className="text-green-500" size={20} />
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex justify-center items-center"
           >
-            <button className="btn-primary flex items-center space-x-2 text-sm md:text-base px-4 md:px-6 py-2 md:py-3">
+            <button className="btn-primary flex items-center space-x-2 text-sm md:text-base px-4 md:px-6 py-2 md:py-3" aria-label="파인호스트 숙소 관리 솔루션 무료 상담 신청">
               <span>무료 상담 신청</span>
               <ArrowRight size={16} className="md:w-5 md:h-5" />
             </button>

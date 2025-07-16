@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
           <div className="flex items-center">
             <img
               src="/finehost_bk.png"
-              alt="FineHost 로고"
+              alt="파인호스트 FineHost - 숙소 PMS CMS 올인원 관리 솔루션 로고"
               className="h-6 md:h-8 w-auto"
               style={{ display: 'inline-block', verticalAlign: 'middle' }}
             />
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
               >
                 <img 
                   src="/shinsegae.png" 
-                  alt="VIA SHINSEGAE 로고" 
+                  alt="신세계여행 VIA SHINSEGAE 파트너십 로고 - 파인호스트 숙소관리 솔루션" 
                   className="h-8 md:h-10 w-auto"
                 />
               </button>
@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToShinsegae }) => {
               >
                 <img 
                   src="/shinsegae.png" 
-                  alt="VIA SHINSEGAE 로고" 
+                  alt="신세계여행 VIA SHINSEGAE 파트너십 로고 - 파인호스트 숙소관리 솔루션" 
                   className="h-6 w-auto mr-3"
                 />
                 <span className="font-medium text-sm">VIA SHINSEGAE</span>
