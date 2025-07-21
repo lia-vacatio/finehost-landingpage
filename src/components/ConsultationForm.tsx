@@ -5,6 +5,7 @@ import { CheckCircle, Phone, Mail, MapPin } from 'lucide-react';
 
 interface FormData {
   name: string;
+  propertyName: string;
   phone: string;
   propertyType: string;
   roomCount: string;
@@ -38,6 +39,7 @@ const ConsultationForm: React.FC = () => {
         },
         body: JSON.stringify({
           name: data.name,
+          propertyName: data.propertyName,
           phone: data.phone,
           propertyType: getPropertyTypeLabel(data.propertyType),
           roomCount: getRoomCountLabel(data.roomCount),
@@ -167,6 +169,22 @@ const ConsultationForm: React.FC = () => {
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  )}
+                </div>
+
+                {/* Property Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    숙소 이름 *
+                  </label>
+                  <input
+                    type="text"
+                    {...register('propertyName', { required: '숙소 이름을 입력해주세요' })}
+                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base"
+                    placeholder="예: 바다뷰 펜션, 힐링 게스트하우스"
+                  />
+                  {errors.propertyName && (
+                    <p className="mt-1 text-sm text-red-600">{errors.propertyName.message}</p>
                   )}
                 </div>
 
