@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
         "예약 상태 변경 시 즉시 반영",
         "통합된 예약 관리로 실수 방지"
       ],
-      image: "/ota-dashboard.png",
+      image: "/ota-dashboard.png?v=2",
       bgColor: "bg-white",
       textColor: "text-gray-900",
       showOtaLogos: true // 첫 번째 기능에만 OTA 로고 슬라이드 표시
