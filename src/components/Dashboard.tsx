@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
         "맞춤형 메시지 템플릿",
         "게스트 만족도 향상"
       ],
-      image: "/message-dashboard.png",
+      image: "/message-dashboard. png.png?v=1",
       bgColor: "bg-gray-50",
       textColor: "text-gray-900",
       showOtaLogos: false,
