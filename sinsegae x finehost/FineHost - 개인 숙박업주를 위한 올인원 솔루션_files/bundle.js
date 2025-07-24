@@ -55568,20 +55568,21 @@ const Dashboard = () => {
     image: "/calendar-sync.png",
     bgColor: "bg-gray-50",
     textColor: "text-gray-900",
-    showOtaLogos: false
-  }, {
-    id: "naver-fee",
-    icon: lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"],
-    headline: "네이버 연동, 수수료 걱정되시죠?",
-    title: "업계 최저 수수료로 네이버 연동을 지원합니다",
-    description: "네이버 예약 연동 시 발생하는 수수료 부담을 최소화했습니다. 업계 최저 수준의 수수료로 더 많은 수익을 남기실 수 있습니다.",
-    benefits: ["업계 최저 수수료 적용", "투명한 수수료 정책", "수익성 극대화"],
-    image: "/naver-integration.png",
-    bgColor: "bg-white",
-    textColor: "text-gray-900",
-    showOtaLogos: false,
-    showFeeChart: true // 세 번째 기능에 수수료 차트 표시
-  }, {
+    showOtaLogos: false},
+  //  {
+  //   id: "naver-fee",
+  //   icon: lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"],
+  //   headline: "네이버 연동, 수수료 걱정되시죠?",
+  //   title: "업계 최저 수수료로 네이버 연동을 지원합니다",
+  //   description: "네이버 예약 연동 시 발생하는 수수료 부담을 최소화했습니다. 업계 최저 수준의 수수료로 더 많은 수익을 남기실 수 있습니다.",
+  //   benefits: ["업계 최저 수수료 적용", "투명한 수수료 정책", "수익성 극대화"],
+  //   image: "/naver-integration.png",
+  //   bgColor: "bg-white",
+  //   textColor: "text-gray-900",
+  //   showOtaLogos: false,
+  //   showFeeChart: true // 세 번째 기능에 수수료 차트 표시
+  // }, 
+  {
     id: "auto-message",
     icon: lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"],
     headline: "매번 메시지 보내기 벅차셨죠?",

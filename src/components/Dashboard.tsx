@@ -54,23 +54,7 @@ const Dashboard: React.FC = () => {
       textColor: "text-gray-900",
       showOtaLogos: false
     },
-    {
-      id: "naver-fee",
-      icon: DollarSign,
-      headline: "네이버 연동, 수수료 걱정되시죠?",
-      title: "업계 최저 수수료로 네이버 연동을 지원합니다",
-      description: "네이버 예약 연동 시 발생하는 수수료 부담을 최소화했습니다. 업계 최저 수준의 수수료로 더 많은 수익을 남기실 수 있습니다.",
-      benefits: [
-        "업계 최저 수수료 적용",
-        "투명한 수수료 정책",
-        "수익성 극대화"
-      ],
-      image: "/naver-integration.png",
-      bgColor: "bg-white",
-      textColor: "text-gray-900",
-      showOtaLogos: false,
-      showFeeChart: true // 세 번째 기능에 수수료 차트 표시
-    },
+
     {
       id: "auto-message",
       icon: MessageSquare,
@@ -226,7 +210,7 @@ const Dashboard: React.FC = () => {
                                   <feature.icon className="w-6 h-6 md:w-8 md:h-8 text-gray-500" />
                                 </div>
                                 <p className="text-gray-500 font-medium text-sm md:text-base">{feature.title}</p>
-                                <p className="text-gray-400 text-xs md:text-sm mt-2">스크린샷 준비 중</p>
+                                {/* <p className="text-gray-400 text-xs md:text-sm mt-2">스크린샷 준비 중</p> */}
                               </div>
                             </div>
                           </div>
